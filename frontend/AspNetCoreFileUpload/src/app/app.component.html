@@ -1,1 +1,3 @@
-<input type="file" placeholder="choose a file" (change)="upload($event);" />
+<input formControlName="firstName" type="file" id="file1" placeholder="choose a file" (change)="upload($event);" />
+<input formControlName="firstName" type="file" id="file2" placeholder="choose a file" (change)="upload($event);" />
+<button (click)="submit()">Submit</button>

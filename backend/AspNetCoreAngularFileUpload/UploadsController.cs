@@ -10,16 +10,19 @@ namespace AspNetCoreAngularFileUpload
     public class UploadsController : Controller
     {
         [HttpPost]
-        public IActionResult Upload([FromForm] UploadModel model)
+        public IActionResult Upload([FromForm] ListingModel model)
         {
-            return Ok(new
+            List<string> attachmentsSummary = new List<string>();
+            foreach (var file in model.Attachments)
             {
-                model.File.FileName,
-                model.File.ContentType,
-                model.File.Length,
-                model.Additional,
+                attachmentsSummary.Add($"File: <{file.FileName}> (size: <{file.Length}>)");
+            }
+            return Ok(new
+            {              
+                AttachmentsSummary = attachmentsSummary,
                 Message = "Using FromForm works perfectly fine!"
             });
         }
     }
 }
+
